@@ -1,0 +1,39 @@
+From SVA Book.
+
+# 5.4 S_eventually property
+I wonder if s_eventually can be used in the antecedent in order to "kick-off"
+a start condition or watch for some event.
+
+* s_eventually property
+1. 
+		p is true in clock tick i if and only if p is true in some clock tick
+		j >= i.
+
+	 1. similar to the (always p) property. (s_eventually) defines a series of
+			evaluations of p however in order for to pass only of the the chances
+			has to pass.
+
+	 2. I don't think this can actually fail. Since this assertion can technically pass
+			sometime later, the simulator can only know in continuous time, not discrete time.
+			As in FV. However if it never starts, the absence of it can tell us more about a
+			potental problem  in the design.
+
+			- If you are describing a situation that needs to happen as in a requirement.
+				The lack of firing implies that requirement never asserted. Thus not invalided,
+				but needs to be further thought through.
+
+	 3. What does (s_eventually always p) mean?
+			- There exist some clock tick where always p is true.
+			- P is true from some clock tick on. (another viewpoint)
+				
+	 4. Compare the following properties
+
+			- [a2] #--> This checks at that rst at some moment becomes low and stays low.
+			- assert property
+				- @(posedge clk) s_eventually always !rst);
+					
+			- [a1]
+			- assert property #--> This only checks that rst at some point goes low.
+				- @(posedge clk) s_eventually !rst
+
+			- 
